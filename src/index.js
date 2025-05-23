@@ -10,12 +10,10 @@ require('./routers')(app);
 
 app.get('/', async (req, res) => {
   try {
-    const sql = 'select version()';
-    const result = await db.query(sql).then(response => response.rows);
+    await db.authenticate();
     return res.status(200).json({
       status: 'ok',
-      message: 'Conexão com o banco de dados realizada com sucesso',
-      data: result
+      message: 'Conexão com o banco de dados realizada com sucesso'
     })
   } catch (error) {
     return res.status(500).json({
