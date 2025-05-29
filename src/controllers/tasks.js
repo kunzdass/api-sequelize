@@ -30,6 +30,18 @@ async function getAllTasks (req, res) {
   }
 }
 
+async function getTasks (req, res) {
+  try {
+    const data = await service.getTasks(req.query);
+    return res.status(200).json(data);
+  } catch (err) {
+    return res.status(500).json({
+      message: 'Ocorreu um erro no servidor',
+      error: err.message
+    })
+  }
+}
+
 async function updateTask (req, res) {
   try {
     const params = {
@@ -46,8 +58,22 @@ async function updateTask (req, res) {
   }
 }
 
+async function deleteTask (req, res) {
+  try {
+    await service.deleteTask(req.params);
+    return res.status(204).send();
+  } catch (err) {
+    return res.status(500).json({
+      message: 'Ocorreu um erro no servidor',
+      error: err.message
+    })
+  }
+}
+
 module.exports = {
   insertTask,
   getAllTasks,
-  updateTask
+  updateTask,
+  deleteTask,
+  getTasks
 }

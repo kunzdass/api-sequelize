@@ -21,6 +21,11 @@ const Task = db.define(
       allowNull: false,
       defaultValue: false,
       field: 'done'
+    },
+    idDepartment: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      field: 'id_department'
     }
   },
   {
