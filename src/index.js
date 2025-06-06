@@ -7,6 +7,7 @@ const PORT = process.env.PORT;
 app.use(express.json());
 
 require('./routers')(app);
+require('./services/swagger')(app);
 
 app.get('/', async (req, res) => {
   try {
