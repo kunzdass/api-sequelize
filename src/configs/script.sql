@@ -11,3 +11,8 @@ create table department (
 
 alter table tasks add column id_department integer;
 alter table tasks add foreign key (id_department) references department (id);
+
+create table files (
+	id serial primary key,
+	filepath text not null
+);
