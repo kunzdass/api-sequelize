@@ -1,12 +1,7 @@
-module.exports = (app, upload) => {
-  app.post('/files', upload.single('arquivo'), (req, res) => {
-    console.log(req.file)
-    // implementar dentro do controller/service
-    res.status(201).send()
-  });
+const controller = require('../controllers/files')
 
-  app.get('/download/:nome', (req, res) => {
-    const caminho = __dirname + '/../../uploads/' + req.params.nome;
-    res.download(caminho);
-  });
+module.exports = (app, upload) => {
+  app.post('/files', upload.single('arquivo'), controller.insertFile);
+  app.get('/files', controller.getFiles)
+  app.get('/download/:id', controller.getFileById);
 }
